@@ -3,6 +3,7 @@
 #include <Common.h>
 #include "plugin_common.h"
 #include <stdbool.h>
+#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C" {
