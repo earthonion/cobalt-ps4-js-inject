@@ -27,3 +27,5 @@ void clear_script_cache();
 void clear_context_tracking();
 
 uint8_t* pattern_scan(uint64_t module_base, uint32_t module_size, const char* signature);
+
+bool check_for_goldhen()

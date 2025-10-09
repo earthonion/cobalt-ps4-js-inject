@@ -416,3 +416,19 @@ bool try_extract_script_from_candidate(uint64_t candidate, std::string& out,
 
   return false;
 }
+
+int GOLDHEN_OFFSET = -1;
+
+bool check_for_goldhen()
+{
+  if (GOLDHEN_OFFSET == -1)
+  {
+    uint64_t tmp;
+    if (orbis_syscall(107, NULL, &tmp) != 0)
+      GOLDHEN_OFFSET = 90;
+    else
+      GOLDHEN_OFFSET = 0;
+  }
+
+  return GOLDHEN_OFFSET == 90;
+}
