@@ -138,7 +138,7 @@ extern "C" void sys_proc_rw(u64 Address, void *Data, u64 Length)
     process_rw_data.length = Length;
     process_rw_data.write_flags = 1;
 
-    orbis_syscall(108 + GOLDHEN_OFFSET, pid, process_rw_data->address,
+    orbis_syscall(108 + GOLDHEN_OFFSET, getpid(), process_rw_data->address,
                   process_rw_data->data, process_rw_data->length, process_rw_data->write);
 #endif
 }
@@ -158,7 +158,7 @@ extern "C" void sys_proc_ro(u64 Address, void *Data, u64 Length)
     process_rw_data.length = Length;
     process_rw_data.write_flags = 0;
 
-    orbis_syscall(108 + GOLDHEN_OFFSET, pid, process_rw_data->address,
+    orbis_syscall(108 + GOLDHEN_OFFSET, getpid(), process_rw_data->address,
                   process_rw_data->data, process_rw_data->length, process_rw_data->write);
 }
 
