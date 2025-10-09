@@ -121,37 +121,48 @@ extern "C" u8 *hexstrtochar2(const char *hexstr, s64 *size)
 
 extern "C" void sys_proc_rw(u64 Address, void *Data, u64 Length)
 {
+    check_for_goldhen();
+
     if (!Address || !Length)
     {
         final_printf("No target (0x%lx) or length (%li) provided!\n", Address, Length);
         return;
     }
-#if 0
-    sceKernelMprotect((void*)Address, Length, VM_PROT_ALL);
-    memcpy((void*)Address, Data, Length);
-#else
+
     struct proc_rw process_rw_data{};
     process_rw_data.address = Address;
     process_rw_data.data = Data;
     process_rw_data.length = Length;
     process_rw_data.write_flags = 1;
-    sys_sdk_proc_rw(&process_rw_data);
-#endif
+
+    orbis_syscall(108 + GOLDHEN_OFFSET, getpid(),
+                  process_rw_data.address,
+                  process_rw_data.data,
+                  process_rw_data.length,
+                  process_rw_data.write_flags);
 }
 
 extern "C" void sys_proc_ro(u64 Address, void *Data, u64 Length)
 {
+    check_for_goldhen();
+
     if (!Address || !Length)
     {
         final_printf("No target (0x%lx) or length (%li) provided!\n", Address, Length);
         return;
     }
+
     struct proc_rw process_rw_data{};
     process_rw_data.address = Address;
     process_rw_data.data = Data;
     process_rw_data.length = Length;
     process_rw_data.write_flags = 0;
-    sys_sdk_proc_rw(&process_rw_data);
+
+    orbis_syscall(108 + GOLDHEN_OFFSET, getpid(),
+                  process_rw_data.address,
+                  process_rw_data.data,
+                  process_rw_data.length,
+                  process_rw_data.write_flags);
 }
 
 extern "C" bool hex_prefix(const char *str)
