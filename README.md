@@ -85,7 +85,7 @@ DEBUG=1 ./build.sh
 - Built using [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain)
 - SponsorBlock API by [Ajay Ramachandran](https://sponsor.ajay.app)
 - Toast notification implementation inspired by TizenTube
-
+- patch.cpp from https://github.com/GoldHEN/GoldHEN_Plugins_Repository/tree/main/plugin_src%2Fgame_patch%2Fsource
 ## License
 
 MIT License - See LICENSE file for details
